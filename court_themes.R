@@ -9,8 +9,8 @@ court_themes = list(
     hex_border_color = "#cccccc"
   ),
   dark = list(
-    court = '#000004',
-    lines = '#999999',
+    court = '#161618',
+    lines = '#485460',
     text = '#f0f0f0',
     made = '#00bfc4',
     missed = '#f8766d',

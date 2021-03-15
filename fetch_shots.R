@@ -1,16 +1,16 @@
-fetch_shots_by_player_id_and_season = function(player_id, season, season_type = "Regular Season") {
+fetch_shots_by_player_id_and_season = function(player_id, season, season_type = "Regular Season", start_date, end_date, last_ten_gms) {
   req(player_id, season, season_type)
 
   request = GET(
     "https://stats.nba.com/stats/shotchartdetail",
     query = list(
       PlayerID = player_id,
-      Season = season,
+      Season = '',
       SeasonType = season_type,
       PlayerPosition = "",
       ContextMeasure = "FGA",
-      DateFrom = "",
-      DateTo = "",
+      DateFrom = start_date,
+      DateTo = end_date,
       GameID = "",
       GameSegment = "",
       LastNGames = 0,
@@ -36,19 +36,30 @@ fetch_shots_by_player_id_and_season = function(player_id, season, season_type = 
 
   raw_shots_data = data$resultSets[[1]]$rowSet
   col_names = tolower(as.character(data$resultSets[[1]]$headers))
-
+  
   if (length(raw_shots_data) == 0) {
     shots = data.frame(
       matrix(nrow = 0, ncol = length(col_names))
     )
   } else {
-    shots = data.frame(
-      matrix(
-        unlist(raw_shots_data),
-        ncol = length(col_names),
-        byrow = TRUE
+    if (last_ten_gms == 'Last 10 Gms' && length(raw_shots_data) > 10 ) {
+      shots = data.frame(
+        matrix(
+          unlist(rev(raw_shots_data)[0:10]),
+          ncol = length(col_names),
+          byrow = TRUE
+        )
       )
-    )
+    }
+    else {
+      shots = data.frame(
+        matrix(
+          unlist(raw_shots_data),
+          ncol = length(col_names),
+          byrow = TRUE
+        )
+      ) 
+    }
   }
 
   shots = as_tibble(shots)
@@ -84,5 +95,8 @@ fetch_shots_by_player_id_and_season = function(player_id, season, season_type = 
 default_shots = fetch_shots_by_player_id_and_season(
   default_player$person_id,
   default_season,
-  default_season_type
+  default_season_type,
+  "1997-01-01",
+  "2021-03-12",
+  "All"
 )
