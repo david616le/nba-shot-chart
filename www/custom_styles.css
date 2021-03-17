@@ -1,11 +1,22 @@
-#court {
+body {
+  display: flex;
+  height: 100vh;
+}
+body > .container {
+  border: 1px solid #636e72;
+  border-radius: 6px;
+  margin: auto;
+}
+.header-content {
+  display:  flex;
+}
+.shot-chart-container > div {
   max-width: 100%;
   margin: 0 auto;
 }
-#court img {
+.shot-chart-container img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
 }
 #court_theme .radio {
   display: inline-block;
@@ -29,11 +40,9 @@
   bottom: 5px;
   right: 5px;
 }
-.primary-content { margin-top: 56px; }
 .shot-chart-header {
-  text-align: center;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  text-align: left;
+  padding-bottom: 25px;
 }
 .shot-chart-header h2 {
   font-size: 42px;
@@ -44,32 +53,40 @@
   line-height: 12px;
 }
 .shot-chart-inputs {
-  padding: 10px;
+  padding: 30px 0;
   background-color: #e9e9e9;
   border-radius: 2px;
   max-width: 340px;
-  border: 1px solid #ccc;
 }
-#player_photo {
-  min-height: 164px;
+.shot-chart-body {
+  min-height: 700px;
+}
+.shot-chart-header .shiny-html-output {
   text-align: center;
 }
-#player_photo img {
-  max-width: 100%;
-  max-height: 100%;
+.shot-chart-header .shiny-html-output img {
+  width: 110px;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  float: left;
 }
-#summary_stats { margin: 20px auto; }
-#summary_stats .headers, #summary_stats .overall {
+.summary-stats-container > div {
+  margin: 20px auto;
+}
+.summary-stats-container .headers, 
+.summary-stats-container .overall {
   font-weight: bold;
   border-width: 1px 0;
   border-style: solid;
   border-color: #bbb;
   white-space: nowrap;
 }
-#summary_stats .row { padding: 5px 0; }
-#summary_stats .odd { background-color: #e9e9e9; }
-#summary_stats .numeric { text-align: right; }
-#summary_stats .zone-label {
+.summary-stats-container .row { padding: 5px 0; }
+.summary-stats-container .odd { background-color: #e9e9e9; }
+.summary-stats-container .numeric { text-align: right; }
+.summary-stats-container .zone-label {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -87,10 +104,6 @@
   padding-bottom: 10px !important;
 }
 .github-link { text-align: center; }
-.download-link-container {
-  margin-top: 5px;
-  text-align: right;
-}
 .bootstrap-select .btn-default {
   background-color: #fff;
   border: 1px solid #dce4ec;
@@ -104,3 +117,245 @@
 }
 .bootstrap-select.btn-group .dropdown-menu li a { color: #2c3e50; }
 .bootstrap-select.btn-group .dropdown-menu li a:hover { color: #fff; }
+.app-header {
+  padding: 20px 0;
+  border-bottom: 1px solid #636e72;
+}
+.app-header img {
+  width: 68px;
+}
+#view_type-label, #player_name-label, #chart_type-label {
+  display: none;
+}
+#player_name-label, 
+#player_name_2-label, 
+#player_name_3-label,
+#player_name_4-label {
+  display: none;
+}
+body,
+.shot-chart-inputs,
+.selectize-input,
+.form-control,
+.shot-chart-content .odd,
+.btn,
+.btn span,
+.input-group-addon,
+.overall, 
+.headers,
+.datepicker,
+.dropdown-menu {
+  background: #161618 !important;
+  color: #ffffff !important;
+  border-color: #485460 !important;
+}
+.form-group span {
+  color: #ffffff !important;
+  border-color: #485460 !important; 
+}
+.player-content {
+  padding: 20px;
+}
+#hex_metric_buttons {
+  opacity: 0;
+  position: fixed;
+  bottom: -60px;
+}
+.chart-type {
+  display:  flex;
+}
+#chart_type .shiny-options-group {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#view_type {
+  margin-top: 10px;
+}
+#season_type, #last_ten_gms {
+  margin-top: 25px;
+}
+#view_type > div,
+#season_type > div,
+#last_ten_gms > div {
+  display: flex;
+}
+#season_type div.radio label, 
+#last_ten_gms div.radio label {
+  border: 1px solid #485460;
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+#view_type div.radio label {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  /* border: 1px solid #636e72; */
+  border-radius: 4px;
+  width: 110px;
+  height: 84px;
+  padding: 8px;
+  border: 1px solid #485460;
+}
+#view_type div.radio, 
+#season_type div.radio, 
+#last_ten_gms div.radio {
+  margin: 0px 15px 0 0;
+}
+#view_type div.radio input,
+#season_type div.radio input, 
+#last_ten_gms div.radio input, 
+#chart_type div.radio label * {
+  display: none;
+}
+#view_type input[type=radio] + span {
+  top: 50px;
+  position: relative;
+}
+input[type=radio]:checked + span {
+  color: #0075ff !important;
+}
+.last_ten_gms label {
+  border: 1px solid #485460;
+  border-radius: 4px;
+  padding: 5px 12px 5px 30px;
+}
+#view_type div.radio:first-child label:before {
+  content: ' ';
+  position: absolute;
+  background-image: url(player.png);
+  width: 30px;
+  height: 45px;
+  background-size: 18px 45px;
+  margin-left: 23px;
+  background-repeat: no-repeat;
+}
+#view_type div.radio:last-child label:before {
+  content: ' ';
+  position: absolute;
+  background-image: url(player.png);
+  width: 30px;
+  height: 45px;
+  background-size: 18px 45px;
+  margin-left: 10px;
+  background-repeat: no-repeat;
+  border-right: 1px solid #485460;
+}
+#view_type div.radio:last-child label:after {
+  content: ' ';
+  position: absolute;
+  background-image: url(player.png);
+  width: 30px;
+  height: 45px;
+  background-size: 18px 45px;
+  margin-left: -30px;
+  background-repeat: no-repeat;
+}
+#chart_type div.radio {
+  margin: auto;
+}
+#chart_type div.radio:first-child label {
+  background-image: url("hex.png");
+}
+#chart_type div.radio:last-child label {
+  background-image: url("density.png");
+}
+#chart_type div.radio label {
+  background-repeat: no-repeat;
+  background-size: 78px 60px;  
+  width: 60px;
+  height: 60px;
+  background-position: center;
+  padding-left: 0;
+  border-radius: 10px;
+}
+#shiny-notification-panel {
+  display: none;
+}
+.shot-chart-content {
+  padding: 15px 0;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b757f;
+  border-radius: 4px;
+}
+
+.season-btn-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.season-btn-group label {
+  border: 1px solid #485460;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-bottom: 15px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.form-control {
+  height: auto;
+}
+select.form-control.shiny-bound-input{
+  padding: 8px 12px !important;
+  height: auto !important;
+}
+.btn {
+  padding: 6px 12px !important;
+  height: auto !important;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -10px;
+}
+
+.app-footer img {
+  width: 30px;
+  height: 30px;
+}
+
+.app-footer > div {
+  width: 100%;
+  background: #636e72;
+  height: 1px;
+  margin: auto 15px;
+}
+
+.download-link-container {
+  padding: 0px 55px;
+}
+
+.control-label {
+  display: none;
+}
+
+.reg_season_select {
+  display: none;
+}
+
+.input-daterange input {
+  border-width: thin;
+}
+.download-shot-chart {
+  color: #0075ff;
+}

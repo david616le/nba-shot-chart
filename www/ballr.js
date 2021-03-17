@@ -21,9 +21,36 @@ $(function() {
     }
   });
 
-  $("#shot_zone_basic_filter").attr("title", "Filter shot zones...");
-  $("#shot_zone_angle_filter").attr("title", "Filter shot angles...");
-  $("#shot_distance_filter").attr("title", "Filter shot distances...");
+  setInterval(function() {
+    $("#player_name_2").selectize({
+      selectOnTab: true,
+      maxOptions: 5000,
+      onDropdownOpen: function() {
+        this.clear('silent');
+      }
+    });
+
+    $("#player_name_3").selectize({
+      selectOnTab: true,
+      maxOptions: 5000,
+      onDropdownOpen: function() {
+        this.clear('silent');
+      }
+    });
+
+    $("#player_name_4").selectize({
+      selectOnTab: true,
+      maxOptions: 5000,
+      onDropdownOpen: function() {
+        this.clear('silent');
+      }
+    });
+  }, 1000);
+
+
+  $("#shot_zone_basic_filter").attr("title", "Select Areas");
+  $("#shot_zone_angle_filter").attr("title", "Select Zones");
+  $("#shot_distance_filter").attr("title", "Select Distances");
 
   $("#shot_zone_basic_filter, #shot_zone_angle_filter, #shot_distance_filter").selectpicker();
 });
